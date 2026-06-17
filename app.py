@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, g
 import sqlite3
 from flask import send_from_directory
 #ログイン
-from flask_login import UserMixin, LoginManager, login_required, login_user, logout_user
+from flask_login import UserMixin, LoginManager, login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-DATABASE="account.db"
+DATABASE="bulletin_board_app.db"
 
 import os
 
