@@ -1,5 +1,17 @@
 {%extends "base.html" %}
 {% block content %}
+<button class="hamburger" onclick="toggleMenu()">
+    ☰
+</button>
+
+<nav id="sideMenu" class="side-menu">
+    <a href="{{ url_for('index') }}">ホーム</a>
+    <a href="{{ url_for('profile') }}">プロフィール</a>
+    <a href="{{ url_for('about') }}">サイトについて</a>
+</nav>
+
+<div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
 <h1>画像掲示板</h1>
 
 <h2>ようこそ {{ current_user.id }} さん</h2>
@@ -41,5 +53,15 @@
 <hr>
 
 {% endfor %}
+
+<script>
+    function toggleMenu() {
+        document.getElementById("sideMenu")
+                .classList.toggle("open");
+
+        document.getElementById("overlay")
+                .classList.toggle("show");
+    }
+</script>
 
 {% endblock %}

@@ -1,0 +1,24 @@
+<button class="hamburger" onclick="toggleMenu()">
+    ☰
+</button>
+
+<nav id="sideMenu" class="side-menu">
+    <a href="{{ url_for('index') }}">ホーム</a>
+    <a href="{{ url_for('profile') }}">プロフィール</a>
+    <a href="{{ url_for('about') }}">サイトについて</a>
+</nav>
+
+<div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+<h1>このサイトについて</h1>
+<p>サイトの説明ページです。</p>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("sideMenu")
+                .classList.toggle("open");
+
+        document.getElementById("overlay")
+                .classList.toggle("show");
+    }
+</script>
