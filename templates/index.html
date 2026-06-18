@@ -29,14 +29,13 @@
 <hr>
 
 {% for post in posts %}
+<div class="post">
+    <h2>{{ post.title }}</h2>
 
-<h2>{{ post.title }}</h2>
+    <p>{{ post.comment }}</p>
 
-<p>{{ post.comment }}</p>
-
-<img src="/uploads/{{ post.image }}"
-     width="300">
-
+    <img src="/uploads/{{ post.image }}" width="300">
+</div>
 <hr>
 
 {% endfor %}
