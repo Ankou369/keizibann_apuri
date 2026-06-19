@@ -49,10 +49,23 @@
     <p>{{ post.comment }}</p>
 
     <img src="/uploads/{{ post.image }}" width="300">
+
+    <br><br>
+
+    <form action="/reset" method="POST" onsubmit="return confirmReset()">
+        <button type="submit" id="delete-btn">削除</button>
+        <input type="hidden" name="id" value="{{ post.id }}">
+    </form>
 </div>
 <hr>
 
-{% endfor %}
+{% endfor %}        
+
+<script>
+    function confirmReset() {
+        return confirm('本当に削除しますか？');
+    }
+</script>
 
 <script>
     function toggleMenu() {

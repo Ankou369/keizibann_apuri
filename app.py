@@ -159,6 +159,14 @@ def index():
         posts=posts
     )
 
+@app.route("/reset", methods=['POST'])
+def reset():
+    db = get_db()
+    id = request.form.get("id")
+    db.execute("delete from post where id=?", [id])
+    db.commit()
+    return redirect('/')
+
 @app.route("/uploads/<filename>")
 @login_required
 def uploaded_file(filename):
