@@ -6,13 +6,13 @@
 
 <nav id="sideMenu" class="side-menu">
     <a href="{{ url_for('index') }}">ホーム</a>
-    <a href="{{ url_for('profile') }}">プロフィール</a>
-    <a href="{{ url_for('about') }}">サイトについて</a>
+    <a href="{{ url_for('hoge') }}">hoge</a>
+    <a href="{{ url_for('fuga') }}">fuga</a>
 </nav>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
-<h1>画像掲示板</h1>
+<h1>長大掲示板</h1>
 
 <h2>ようこそ {{ current_user.id }} さん</h2>
 
@@ -40,6 +40,13 @@
 
 <hr>
 
+<div class="search">
+    <form method="GET" action="{{ url_for('index') }}">
+        <input type="text" name="search" placeholder="検索" value="{{ search }}">
+        <button type="submit">検索</button>
+    </form>
+</div>
+
 {% for post in posts %}
 <div class="post">
     <h2>{{ post.title }}</h2>
@@ -59,7 +66,6 @@
         <input type="hidden" name="id" value="{{ post.id }}">
     </form>
 </div>
-<hr>
 
 {% endfor %}        
 

@@ -149,19 +149,34 @@ def index():
 
         return redirect("/")
 
-    db = get_db()
-    # 投稿一覧を取得
-    posts = db.execute(
-        """
-        SELECT *
-        FROM post
-        ORDER BY id DESC
-        """
-    ).fetchall()
+    search = request.args.get("search", "")
+
+    if search:
+        db = get_db()
+        posts = db.execute(
+            """
+            SELECT *
+            FROM post
+            WHERE comment LIKE ?
+            ORDER BY id DESC
+            """,
+            (f"%{search}%",)
+        ).fetchall()
+    else:
+        db = get_db()
+        # 投稿一覧を取得
+        posts = db.execute(
+            """
+            SELECT *
+            FROM post
+            ORDER BY id DESC
+            """
+        ).fetchall()
 
     return render_template(
         "index.html",
-        posts=posts
+        posts=posts,
+        search=search
     )
 
 @app.route("/reset", methods=['POST'])
@@ -181,13 +196,13 @@ def uploaded_file(filename):
         filename
     )
 
-@app.route("/profile")
-def profile():
-    return render_template("profile.html")
+@app.route("/hoge")
+def hoge():
+    return render_template("hoge.html")
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
+@app.route("/fuga")
+def fuga():
+    return render_template("fuga.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -89,6 +89,19 @@ th {
     background-color: #f8f9fa;
 }
 
+.search form {
+    display: flex;
+    gap: 10px;
+}
+
+.search input {
+    padding: 8px;
+}
+
+.search button {
+    padding: 8px 12px;
+}
+
 .post {
     background-color: #fafafa;
     border: 1px solid #ddd;
