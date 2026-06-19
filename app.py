@@ -196,9 +196,37 @@ def uploaded_file(filename):
         filename
     )
 
-@app.route("/hoge")
-def hoge():
-    return render_template("hoge.html")
+@app.route("/myaccount")
+def myaccount():
+    search = request.args.get("search", "")
+
+    if search:
+        db = get_db()
+        posts = db.execute(
+            """
+            SELECT *
+            FROM post
+            WHERE userid = ? AND comment LIKE ?
+            ORDER BY id DESC
+            """,
+            (current_user.id, f"%{search}%")
+        ).fetchall()
+    else:
+        db = get_db()
+        # 投稿一覧を取得
+        posts = db.execute(
+            """
+            SELECT *
+            FROM post
+            WHERE userid = ?
+            ORDER BY id DESC
+            """,
+            (current_user.id,)
+        ).fetchall()
+
+    return render_template("myaccount.html",
+                           posts=posts,
+                           search=search)
 
 @app.route("/fuga")
 def fuga():

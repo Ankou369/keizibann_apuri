@@ -4,10 +4,6 @@
     ☰
 </button>
 
-<button class="logout" onclick="location.href='{{ url_for('logout') }}'">
-    ログアウト
-</button>
-
 <nav id="sideMenu" class="side-menu">
     <a href="{{ url_for('index') }}">ホーム</a>
     <a href="{{ url_for('myaccount') }}">マイアカウント</a>
@@ -16,36 +12,11 @@
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
-<h1>長大掲示板</h1>
-
-<h2>ようこそ {{ current_user.id }} さん</h2>
-
-<form method="POST" enctype="multipart/form-data">
-
-    <input type="text"
-           name="title"
-           placeholder="タイトル">
-
-    <br><br>
-
-    <textarea name="comment"></textarea>
-
-    <br><br>
-
-    <input type="file" name="image">
-
-    <br><br>
-
-    <button type="submit">
-        投稿
-    </button>
-
-</form>
-
-<hr>
+<h1>{{ current_user.id }}</h1>
+<h2>過去の投稿</h2>
 
 <div class="search">
-    <form method="GET" action="{{ url_for('index') }}">
+    <form method="GET" action="{{ url_for('myaccount') }}">
         <input type="text" name="search" placeholder="検索" value="{{ search }}">
         <button type="submit">検索</button>
     </form>
@@ -62,9 +33,21 @@
     {% if post.image %}
         <img src="/uploads/{{ post.image }}" width="300">
     {% endif %}
-</div>
 
+    <br><br>
+
+    <form action="/reset" method="POST" onsubmit="return confirmReset()">
+        <button type="submit" id="delete-btn">削除</button>
+        <input type="hidden" name="id" value="{{ post.id }}">
+    </form>
+</div>
 {% endfor %}
+
+<script>
+    function confirmReset() {
+        return confirm('本当に削除しますか？');
+    }
+</script>
 
 <script>
     function toggleMenu() {
@@ -75,5 +58,4 @@
                 .classList.toggle("show");
     }
 </script>
-
 {% endblock %}
