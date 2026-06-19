@@ -48,7 +48,9 @@
 
     <p>{{ post.comment }}</p>
 
-    <img src="/uploads/{{ post.image }}" width="300">
+    {% if post.image %}
+        <img src="/uploads/{{ post.image }}" width="300">
+    {% endif %}
 
     <br><br>
 

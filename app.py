@@ -122,22 +122,27 @@ def index():
         # <input name="image">から画像を取得
         image = request.files["image"]
 
+        filename = None
 
-        filename = image.filename
-        # 画像をuploadsフォルダに保存する
-        image.save(
-            os.path.join(app.config["UPLOAD_FOLDER"], filename)
-        )
+        # 画像が選択されている場合は、画像を保存
+        if image and image.filename != "":
+            filename = image.filename
+
+            image.save(
+                os.path.join(
+                    app.config["UPLOAD_FOLDER"],
+                    filename
+                )
+            )
 
         db = get_db()
         # 投稿を保存
         db.execute(
             """
-            INSERT INTO post
-            (title, comment, image, userid)
+            INSERT INTO post(title, comment, image, userid)
             VALUES (?, ?, ?, ?)
             """,
-            [title, comment, filename, current_user.id]
+            (title, comment, filename, current_user.id)
         )
 
         db.commit()
@@ -163,7 +168,7 @@ def index():
 def reset():
     db = get_db()
     id = request.form.get("id")
-    db.execute("delete from post where id=?", [id])
+    db.execute("DELETE FROM post WHERE id=? AND userid=?",(id, current_user.id))
     db.commit()
     return redirect('/')
 
