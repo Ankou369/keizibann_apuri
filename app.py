@@ -173,9 +173,26 @@ def index():
             """
         ).fetchall()
 
+    db = get_db()
+
+    # フォローしているユーザーのIDを取得
+    follow_list = db.execute(
+        """
+        SELECT following_id
+        FROM follow_table
+        WHERE follower_id = ?
+        """,
+        (current_user.id,)
+    ).fetchall()
+
+    #follow_list[0]["following_id"]の形で取得できるので、following_idだけのリストに変換
+    for i, row in enumerate(follow_list):
+        follow_list[i] = row["following_id"]
+
     return render_template(
         "index.html",
         posts=posts,
+        follow_list=follow_list,
         search=search
     )
 
@@ -195,6 +212,49 @@ def uploaded_file(filename):
         app.config["UPLOAD_FOLDER"],
         filename
     )
+
+@app.route("/follow", methods=["POST"])
+def follow():
+    # フォローするユーザーのIDを取得
+    follow_userid = request.form.get("follow_userid")
+
+    db = get_db()
+    result = db.execute(
+        """
+        SELECT EXISTS(
+            SELECT 1
+            FROM follow_table
+            WHERE follower_id = ? AND following_id = ?
+        )""",
+        (current_user.id, follow_userid)
+    ).fetchone()
+    db.commit()
+
+    if result[0] == True:
+        # すでにフォローしている場合は、フォローを解除する
+        db = get_db()
+        db.execute(
+            """
+            DELETE FROM follow_table
+            WHERE follower_id = ? AND following_id = ?
+            """,
+            (current_user.id, follow_userid)
+        )
+        db.commit()
+        return redirect('/')
+    else:
+        # フォロー関係をデータベースに保存
+        db = get_db()
+        db.execute(
+            """
+            INSERT INTO follow_table (follower_id, following_id)
+            VALUES (?, ?)
+            """,
+            (current_user.id, follow_userid)
+        )
+        db.commit()
+
+    return redirect('/')
 
 @app.route("/myaccount")
 def myaccount():

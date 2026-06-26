@@ -55,8 +55,23 @@
 <div class="post">
     <h2>{{ post.title }}</h2>
 
-    <p>投稿者: {{post.userid}}</p>
+    <form method="POST" action="{{ url_for('follow') }}" style="display:inline;">
+        <input
+                type="hidden"
+                name="follow_userid"
+                value="{{ post.userid }}"
+        >
 
+    <div class="account">
+        <p>投稿者: {{post.userid}}</p>
+        {% if post.userid != current_user.id %}
+            {% if post.userid in follow_list %}
+                <button type="submit" class="unfollow-btn">フォロー解除</button>
+            {% else %}
+                <button type="submit" class="follow-btn">フォロー</button>
+            {% endif %}
+        {% endif %}
+    </div>
     <p>{{ post.comment }}</p>
 
     {% if post.image %}

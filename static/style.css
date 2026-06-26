@@ -367,6 +367,21 @@ button:active{
 .hamburger:hover{
     background:rgba(255,255,255,.25);
 }
+/* ==========================
+    フォロー
+========================== */
+.account{
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    margin-bottom:10px;
+}
+.follow-btn{
+    transform: scale(0.8);
+}
+.unfollow-btn{
+    transform: scale(0.8);
+}
 
 /* ==========================
    サイドメニュー
