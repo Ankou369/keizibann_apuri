@@ -1,227 +1,473 @@
-body {
-    font-family: "Yu Gothic", "Meiryo", sans-serif;
-    background-color: #f4f6f8;
-    margin: 0;
-    padding: 20px;
+/* ==========================
+   全体
+========================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+body{
+    font-family: "Segoe UI","Yu Gothic",sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #e0f7ff,
+            #d6e4ff
+        );
+
+    
+    min-height:100vh;
+    color:black;
+
+    /* 画面の端から40px離す */
+    padding:40px;
+}
+/* ==========================
+   ログイン画面
+========================== */
+
+.login-container{
+
+    width:90%;
+    max-width:500px;
+
+    margin:80px auto;
+
+    text-align:center;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
+.login-container h1{
+
+    color:#60a5fa;
+
+    margin-bottom:40px;
 }
 
-h2 {
-    color: #444;
+/* フォーム */
+
+.login-container form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
 }
 
-form {
-    margin-bottom: 30px;
+/* 入力欄 */
+
+.login-container input[type="text"],
+.login-container input[type="password"]{
+
+    height:65px;
+
+    padding:0 25px;
+
+    border:1px solid rgba(199, 212, 224, 0.2);
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.1);
+
+    backdrop-filter:blur(20px);
+
+    color:black;
+
+    font-size:18px;
+
+    outline:none;
 }
 
-input[type="text"],
-input[type="password"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+.login-container input::placeholder{
+
+    color:rgba(0,0,0,.5);
 }
 
-textarea {
-    min-height: 120px;
-    resize: vertical;
+/* ログインボタン */
+
+.login-container input[type="submit"]{
+
+    height:65px;
+
+    border:none;
+
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #818cf8
+        );
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
 }
 
-input[type="file"] {
-    margin-top: 10px;
+.login-container input[type="submit"]:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.3);
 }
 
-button,
-input[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
+/* 新規登録ボタン */
+
+.signup-btn{
+
+    display:block;
+
+    margin-top:30px;
+
+    padding:18px;
+
+    border:2px solid #60a5fa;
+
+    border-radius:35px;
+
+    text-decoration:none;
+
+    color:#60a5fa;
+
+    font-weight:bold;
+
+    transition:.3s;
 }
 
-button:hover,
-input[type="submit"]:hover {
-    background-color: #0056b3;
+.signup-btn:hover{
+
+    background:#60a5fa;
+
+    color:white;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
+/* エラー */
+
+.error{
+
+    color:#ff6b6b;
+
+    margin-bottom:20px;
+}
+/* ==========================
+   タイトル
+========================== */
+
+h1{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:20px;
+    
+    color: #60a5fa;
+
 }
 
-a:hover {
-    text-decoration: underline;
+h2{
+    margin-bottom:15px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
+/* ==========================
+   フォーム
+========================== */
+
+form{
+    margin-bottom:30px;
 }
 
-th,
-td {
-    padding: 10px;
-    border: 1px solid #ddd;
+input[type=text],
+input[type=password],
+textarea{
+
+    width:100%;
+
+    background:rgba(255,255,255,0.08);
+
+    border:2px solid #abb5c6;
+
+    color:black;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    backdrop-filter:blur(10px);
+
+    outline:none;
+
+    transition:0.3s;
 }
 
-th {
-    background-color: #f8f9fa;
+input[type=text]:focus,
+input[type=password]:focus,
+textarea:focus{
+
+    border-color:#60a5fa;
+
+    box-shadow:
+        0 0 15px rgba(96,165,250,0.5);
 }
 
-.search form {
-    display: flex;
-    gap: 10px;
+textarea{
+    min-height:150px;
 }
 
-.search input {
-    padding: 8px;
+/* ==========================
+   ボタン
+========================== */
+
+button{
+
+    background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #8b5cf6
+        );
+
+    border:none;
+
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.25s;
 }
 
-.search button {
-    padding: 8px 12px;
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.3);
 }
 
-.post {
-    background-color: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
+button:active{
+    transform:scale(.95);
 }
 
-.post img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 10px;
+/* ==========================
+   投稿カード
+========================== */
+
+.post{
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    border:2px solid #dddfe5;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    transition:.3s;
 }
 
-.error {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 10px;
+.post:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.4);
 }
 
-#delete-btn {
-    background-color: #dc3545;
-    color: white;
-
-    /* display: block;
-    width: fit-content;
-    margin-left : auto;  */
-
-    border: none;
-    border-radius: 6px;
-
-    padding: 8px 16px;
-
-    font-size: 14px;
-    cursor: pointer;
-
-    transition: 0.2s;
+.post h2{
+    color:#60a5fa;
+    margin-bottom:10px;
 }
 
-#delete-btn:hover {
-    background-color: #bb2d3b;
+.post p{
+    line-height:1.8;
 }
 
-#delete-btn:active {
-    transform: scale(0.95);
+/* ==========================
+   画像
+========================== */
+
+.post img{
+
+    width:100%;
+
+    max-width:500px;
+
+    margin-top:15px;
+
+    border-radius:20px;
+
+    transition:.3s;
 }
 
-/* ハンバーガーメニュー */
-/* ハンバーガーボタン */
-.hamburger {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-
-    font-size: 30px;
-    border: none;
-    color: black;
-    background: none;
-    cursor: pointer;
-
-    z-index: 1001;
+.post img:hover{
+    transform:scale(1.03);
 }
 
-.hamburger:hover {
-    color: #333333;
-    background: #CCCCCC;
+/* ==========================
+   検索
+========================== */
+
+.search{
+
+    margin:30px 0;
 }
 
-/* サイドメニュー */
-.side-menu {
-    position: fixed;
-    top: 0;
-    right: -250px; /* 画面外へ隠す */
-
-    width: 250px;
-    height: 100%;
-
-    background: #333;
-
-    transition: right 0.3s ease;
-
-    z-index: 1000;
-
-    padding-top: 70px;
+.search form{
+    display:flex;
+    gap:10px;
 }
 
-/* 開いた状態 */
-.side-menu.open {
-    right: 0;
+/* ==========================
+   ハンバーガー
+========================== */
+
+.hamburger{
+
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    color:#60a5fa;
+
+    font-size:24px;
+
+    z-index:1001;
+
+    text-indent: -6px;
 }
 
-.side-menu a {
-    display: block;
-    padding: 15px 20px;
-
-    color: white;
-    text-decoration: none;
+.hamburger:hover{
+    background:rgba(255,255,255,.25);
 }
 
-.side-menu a:hover {
-    background: #555;
+/* ==========================
+   サイドメニュー
+========================== */
+
+.side-menu{
+
+    position:fixed;
+
+    top:0;
+    right:-300px;
+
+    width:300px;
+    height:100%;
+
+    background:rgba(15,23,42,.95);
+
+    backdrop-filter:blur(20px);
+
+    transition:.4s;
+
+    padding-top:80px;
+
+    z-index:1000;
 }
 
-/* 背景 */
-.overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,0.5);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: 0.3s;
-
-    z-index: 999;
+.side-menu.open{
+    right:0;
 }
 
-.overlay.show {
-    opacity: 1;
-    visibility: visible;
+.side-menu a{
+
+    display:block;
+
+    padding:18px 30px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    transition:.3s;
+}
+
+.side-menu a:hover{
+
+    background:rgba(255,255,255,.1);
+
+    padding-left:40px;
+}
+
+/* ==========================
+   背景オーバーレイ
+========================== */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.5);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+}
+
+.overlay.show{
+
+    opacity:1;
+    visibility:visible;
+}
+
+/* ==========================
+   ログアウト
+========================== */
+
+.logout{
+
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    z-index:1000;
+}
+.hidden{
+
+    opacity:0;
+    transform:translateY(50px);
+}
+
+.show{
+
+    opacity:1;
+    transform:translateY(0);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
 }

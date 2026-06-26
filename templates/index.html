@@ -1,7 +1,7 @@
 {%extends "base.html" %}
 {% block content %}
 <button class="hamburger" onclick="toggleMenu()">
-    ☰
+    <span>☰</span>
 </button>
 
 <button class="logout" onclick="location.href='{{ url_for('logout') }}'">
@@ -67,13 +67,40 @@
 {% endfor %}
 
 <script>
-    function toggleMenu() {
-        document.getElementById("sideMenu")
-                .classList.toggle("open");
 
-        document.getElementById("overlay")
-                .classList.toggle("show");
-    }
+function toggleMenu() {
+
+    document
+        .getElementById("sideMenu")
+        .classList.toggle("open");
+
+    document
+        .getElementById("overlay")
+        .classList.toggle("show");
+}
+
+const posts = document.querySelectorAll(".post");
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+        }
+    });
+
+},{
+    threshold:0.2
+});
+
+posts.forEach(post => {
+
+    post.classList.add("hidden");
+    observer.observe(post);
+});
+
 </script>
 
 {% endblock %}
