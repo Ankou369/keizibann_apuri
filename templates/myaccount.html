@@ -13,6 +13,19 @@
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
 <h1>{{ current_user.id }}</h1>
+
+<div class="follow">
+    <div class="follower">
+        <h2>フォロワー</h2>
+        <p>{{ follower_count }}</p>
+    </div>
+    <div class="following">
+        <h2>フォロー中</h2>
+        <p>{{ following_count }}</p>
+
+    </div>
+</div>
+
 <h2>過去の投稿</h2>
 
 <div class="search">

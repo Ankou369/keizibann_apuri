@@ -284,9 +284,30 @@ def myaccount():
             (current_user.id,)
         ).fetchall()
 
+    db = get_db()
+    follower_count = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM follow_table
+        WHERE following_id = ?
+        """,
+        (current_user.id,)
+    ).fetchone()[0]
+
+    following_count = db.execute(
+        """
+        SELECT COUNT(*)
+        FROM follow_table
+        WHERE follower_id = ?
+        """,
+        (current_user.id,)
+    ).fetchone()[0]
+    
     return render_template("myaccount.html",
                            posts=posts,
-                           search=search)
+                           search=search,
+                           follower_count=follower_count,
+                           following_count=following_count)
 
 @app.route("/fuga")
 def fuga():

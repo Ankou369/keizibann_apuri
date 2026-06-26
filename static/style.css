@@ -383,6 +383,37 @@ button:active{
     transform: scale(0.8);
 }
 
+/* myaccount */
+.follow{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.follower,
+.following{
+    text-align: center;
+    min-width: 140px;
+    transition: transform 0.2s ease;
+}
+
+.follower h2,
+.following h2{
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+}
+
+.follower p,
+.following p{
+    margin: 10px 0 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
 /* ==========================
    サイドメニュー
 ========================== */
