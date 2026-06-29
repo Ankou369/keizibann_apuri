@@ -1,13 +1,13 @@
 {%extends "base.html" %}
 {% block content %}
-<button class="hamburger" onclick="toggleMenu()">
+<button class="gradient-button hamburger" onclick="toggleMenu()">
     ☰
 </button>
 
 <nav id="sideMenu" class="side-menu">
     <a href="{{ url_for('index') }}">ホーム</a>
     <a href="{{ url_for('myaccount') }}">マイアカウント</a>
-    <a href="{{ url_for('fuga') }}">fuga</a>
+    <a href="{{ url_for('circle_list') }}">サークル・部活動一覧</a>
 </nav>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
@@ -31,7 +31,7 @@
 <div class="search">
     <form method="GET" action="{{ url_for('myaccount') }}">
         <input type="text" name="search" placeholder="検索" value="{{ search }}">
-        <button type="submit">検索</button>
+        <button class="gradient-button type="submit">検索</button>
     </form>
 </div>
 
@@ -50,7 +50,7 @@
     <br><br>
 
     <form action="/reset" method="POST" onsubmit="return confirmReset()">
-        <button type="submit" id="delete-btn">削除</button>
+        <button class="gradient-button type="submit" id="delete-btn">削除</button>
         <input type="hidden" name="id" value="{{ post.id }}">
     </form>
 </div>

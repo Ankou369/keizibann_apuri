@@ -1,6 +1,6 @@
 {%extends "base.html" %}
 {% block content %}
-<button class="gradient-buton hamburger" onclick="toggleMenu()">
+<button class="gradient-button hamburger" onclick="toggleMenu()">
     ☰
 </button>
 
@@ -12,8 +12,16 @@
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
-<h1>fuga</h1>
-<p>fugafugafugafugafuga</p>
+<h1>サークル・部活動一覧</h1>
+
+<div class="circle_card">
+    <a href="{{url_for('myaccount')}}">
+        {# <img src="{{ url_for('static', filename='backgrounds/background.png') }}"
+             alt="Athletics"
+             class="banner"> #}
+        <button class="banner"></button>
+    </a>
+</div>
 
 <script>
     function toggleMenu() {

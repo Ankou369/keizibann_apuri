@@ -309,9 +309,9 @@ def myaccount():
                            follower_count=follower_count,
                            following_count=following_count)
 
-@app.route("/fuga")
-def fuga():
-    return render_template("fuga.html")
+@app.route("/circle_list")
+def circle_list():
+    return render_template("circle_list.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

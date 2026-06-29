@@ -1,17 +1,15 @@
 {%extends "base.html" %}
 {% block content %}
-<button class="hamburger" onclick="toggleMenu()">
+<button class="gradient-button hamburger" onclick="toggleMenu()">
     <span>☰</span>
-</button>
-
-<button class="logout" onclick="location.href='{{ url_for('logout') }}'">
-    ログアウト
 </button>
 
 <nav id="sideMenu" class="side-menu">
     <a href="{{ url_for('index') }}">ホーム</a>
     <a href="{{ url_for('myaccount') }}">マイアカウント</a>
-    <a href="{{ url_for('fuga') }}">fuga</a>
+    <a href="{{ url_for('circle_list') }}">サークル・部活動一覧</a>
+    
+    <button class="gradient-button logout" onclick="location.href='{{ url_for('logout') }}'">ログアウト</button>
 </nav>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
@@ -28,7 +26,9 @@
 
     <br><br>
 
-    <textarea name="comment"></textarea>
+    <textarea name="comment"
+              placeholder="コメント &#10;#ハッシュタグをつけると検索するときに便利です"
+              ></textarea>
 
     <br><br>
 
@@ -36,7 +36,7 @@
 
     <br><br>
 
-    <button type="submit">
+    <button class="gradient-button "type="submit">
         投稿
     </button>
 
@@ -47,7 +47,7 @@
 <div class="search">
     <form method="GET" action="{{ url_for('index') }}">
         <input type="text" name="search" placeholder="検索" value="{{ search }}">
-        <button type="submit">検索</button>
+        <button class="gradient-button type="submit">検索</button>
     </form>
 </div>
 
@@ -66,9 +66,9 @@
         <p>投稿者: {{post.userid}}</p>
         {% if post.userid != current_user.id %}
             {% if post.userid in follow_list %}
-                <button type="submit" class="unfollow-btn">フォロー解除</button>
+                <button type="submit" class="gradient-button unfollow-btn">フォロー解除</button>
             {% else %}
-                <button type="submit" class="follow-btn">フォロー</button>
+                <button type="submit" class="gradient-button follow-btn">フォロー</button>
             {% endif %}
         {% endif %}
     </div>
